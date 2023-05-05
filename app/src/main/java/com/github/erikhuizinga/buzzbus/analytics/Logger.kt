@@ -2,7 +2,6 @@ package com.github.erikhuizinga.buzzbus.analytics
 
 import android.util.Log
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.request.header
 import io.ktor.client.request.post
@@ -22,7 +21,7 @@ class JitsuLogger private constructor(
     endpoint: String,
     private val apiKey: String,
 ) : Logger, Closeable {
-    private val client = HttpClient(CIO) {
+    private val client = HttpClient {
         defaultRequest {
             contentType(ContentType.Application.Json)
             header("X-Auth-Token", apiKey)
